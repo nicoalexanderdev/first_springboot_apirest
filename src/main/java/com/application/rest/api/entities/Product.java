@@ -2,6 +2,8 @@ package com.application.rest.api.entities;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -33,10 +35,12 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "id_maker", nullable = false)
+    // @JsonIgnore
     private Maker maker;
 
     @ManyToOne
     @JoinColumn(name = "id_category", nullable = false)
+    // @JsonIgnore
     private Category category;
 
 }
