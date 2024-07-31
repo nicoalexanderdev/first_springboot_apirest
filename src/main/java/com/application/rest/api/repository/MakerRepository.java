@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.application.rest.api.entities.Maker;
 
+@Repository
 public interface MakerRepository extends JpaRepository<Maker, Long> {
 
 }
