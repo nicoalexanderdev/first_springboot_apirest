@@ -1,17 +1,15 @@
-package com.application.rest.api.entities;
+package com.application.rest.api.persistence.entities;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,16 +23,24 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table
-public class Category {
+@Table(name = "product")
+public class ProductEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String description;
+    private BigDecimal price;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @ManyToOne
+    @JoinColumn(name = "id_maker", nullable = false)
     @JsonIgnore
-    private List<Product> productList = new ArrayList<>();
+    private MakerEntity maker;
+
+    @ManyToOne
+    @JoinColumn(name = "id_category", nullable = false)
+    @JsonIgnore
+    private CategoryEntity category;
 
 }

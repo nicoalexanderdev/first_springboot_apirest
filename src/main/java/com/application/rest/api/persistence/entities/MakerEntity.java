@@ -1,4 +1,4 @@
-package com.application.rest.api.entities;
+package com.application.rest.api.persistence.entities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +25,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table
-public class Maker {
+@Table(name = "maker")
+public class MakerEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,5 +35,5 @@ public class Maker {
 
     @OneToMany(mappedBy = "maker", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JsonIgnore
-    private List<Product> productList = new ArrayList<>();
+    private List<ProductEntity> productList = new ArrayList<>();
 }
