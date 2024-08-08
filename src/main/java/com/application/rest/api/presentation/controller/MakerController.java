@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.application.rest.api.presentation.dto.MakerDTO;
@@ -32,7 +33,7 @@ public class MakerController {
 
     // find by id
     @GetMapping("/{id}")
-    public ResponseEntity<?> findById(@PathVariable Long id) {
+    public ResponseEntity<MakerDTO> findById(@PathVariable Long id) {
         return new ResponseEntity<>(makerService.findById(id), HttpStatus.OK);
     }
 
@@ -52,5 +53,11 @@ public class MakerController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delteById(@PathVariable Long id) {
         return new ResponseEntity<>(makerService.deleteById(id), HttpStatus.NO_CONTENT);
+    }
+
+    // search by name
+    @GetMapping("/search")
+    public ResponseEntity<MakerDTO> findByName(@RequestParam String query) {
+        return new ResponseEntity<>(makerService.findByNameIgnoreCase(query), HttpStatus.OK);
     }
 }
