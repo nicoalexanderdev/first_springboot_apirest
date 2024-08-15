@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MakerDTO {
+public class CategoryDTO {
 
     private Long id;
     private String name;
